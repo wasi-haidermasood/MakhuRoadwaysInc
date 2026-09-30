@@ -25,7 +25,7 @@ const Navigation = () => {
     { name: "Contact", href: "#contact" },
   ];
 
-  const pageItems = [{ name: "Letterhead", to: "/letterhead" }];
+  // const pageItems = [{ name: "Letterhead", to: "/letterhead" }];
 
   const scrollOnHome = (href: string) => {
     const el = document.querySelector(href);
@@ -140,7 +140,7 @@ const Navigation = () => {
             })}
 
             {/* Letterhead page link */}
-            {pageItems.map((p) => {
+            {/* {pageItems.map((p) => {
               const isActive = active === p.to;
               return (
                 <button
@@ -157,7 +157,7 @@ const Navigation = () => {
                   )}
                 </button>
               );
-            })}
+            })} */}
           </div>
 
           {/* Desktop Right */}

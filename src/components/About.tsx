@@ -10,7 +10,7 @@ import {
 } from "lucide-react";
 
 // Add this image in: src/assets/about-truck.jpg (change name if needed)
-import aboutTruck from "@/assets/dry-van-sunset.jpg";
+import aboutTruck from "@/assets/van-sunset.jpg";
 
 const About = () => {
   const values = [

@@ -2,13 +2,11 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Mail, MapPin, Phone, ArrowRight } from "lucide-react";
 
-const FORMSPREE_ENDPOINT = "https://formspree.io/f/xkjgkovw";
+const FORMSPREE_ENDPOINT = "https://formspree.io/f/mzezwvjw";
 
 const PHONE_DISPLAY = "+1 (705) 255-0270";
 const PHONE_TEL = "+17052550270";
 const ADDRESS = "136 Sunforest Dr Brampton ON L6Z 4B8";
-
-// Display-only email (Formspree delivers to the inbox you configured)
 const OWNER_EMAIL_DISPLAY = "dispatch@makhuroadwaysinc.com";
 
 const Contact = () => {
@@ -20,8 +18,22 @@ const Contact = () => {
     email: "",
     phone: "",
     serviceType: "Dry Van",
+
     origin: "",
     destination: "",
+
+    pickupDate: "",
+    deliveryDate: "",
+
+    commodity: "",
+    weight: "",
+    pallets: "",
+    trailerSize: "53 ft",
+    loadType: "Live Load",
+
+    temperature: "", // only for Reefer (optional)
+    reference: "", // optional
+
     message: "",
     company: "", // honeypot anti-spam (keep empty)
   });
@@ -37,7 +49,7 @@ const Contact = () => {
     e.preventDefault();
     setStatus(null);
 
-    // Honeypot: bots fill hidden fields
+    // Honeypot
     if (form.company) return;
 
     if (!form.name || !form.email || !form.message) {
@@ -53,21 +65,31 @@ const Contact = () => {
         email: form.email,
         phone: form.phone,
         serviceType: form.serviceType,
+
         origin: form.origin,
         destination: form.destination,
+
+        pickupDate: form.pickupDate,
+        deliveryDate: form.deliveryDate,
+
+        commodity: form.commodity,
+        weight: form.weight,
+        pallets: form.pallets,
+        trailerSize: form.trailerSize,
+        loadType: form.loadType,
+
+        temperature: form.temperature,
+        reference: form.reference,
+
         message: form.message,
 
-        // Formspree extras:
         _subject: `New Quote Request - ${form.serviceType}`,
         _replyto: form.email,
       };
 
       const res = await fetch(FORMSPREE_ENDPOINT, {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
         body: JSON.stringify(payload),
       });
 
@@ -83,8 +105,22 @@ const Contact = () => {
         email: "",
         phone: "",
         serviceType: "Dry Van",
+
         origin: "",
         destination: "",
+
+        pickupDate: "",
+        deliveryDate: "",
+
+        commodity: "",
+        weight: "",
+        pallets: "",
+        trailerSize: "53 ft",
+        loadType: "Live Load",
+
+        temperature: "",
+        reference: "",
+
         message: "",
         company: "",
       });
@@ -110,8 +146,7 @@ const Contact = () => {
             </h2>
 
             <p className="mt-4 text-lg text-slate-600 max-w-xl">
-              Request a quote for Dry Van, Reefer (temperature controlled), or Power Only
-              across the USA & Canada. We’ll get back to you ASAP.
+              Dry Van, Reefer, and Power Only across the USA & Canada.
             </p>
 
             <div className="mt-8 grid gap-4">
@@ -149,8 +184,6 @@ const Contact = () => {
                   <div>
                     <div className="font-bold text-slate-900">Email</div>
                     <div className="text-slate-600">{OWNER_EMAIL_DISPLAY}</div>
-                    <div className="text-xs text-slate-500 mt-1">
-                    </div>
                   </div>
                 </div>
               </div>
@@ -162,7 +195,7 @@ const Contact = () => {
             <div className="bg-[#071a2f] text-white px-6 py-6">
               <div className="text-lg font-extrabold">Request a Quote</div>
               <div className="text-sm text-white/75">
-                Fill the form and we’ll contact you shortly.
+                Share the load details and we’ll reply ASAP.
               </div>
             </div>
 
@@ -251,6 +284,129 @@ const Contact = () => {
                     placeholder="City, State/Province"
                   />
                 </div>
+
+                <div>
+                  <label className="text-sm font-semibold text-slate-700">
+                    Pickup Date (Optional)
+                  </label>
+                  <input
+                    name="pickupDate"
+                    type="date"
+                    value={form.pickupDate}
+                    onChange={onChange}
+                    className="mt-2 w-full rounded-lg border border-slate-200 px-3 py-2 outline-none focus:border-red-500"
+                  />
+                </div>
+
+                <div>
+                  <label className="text-sm font-semibold text-slate-700">
+                    Delivery Date (Optional)
+                  </label>
+                  <input
+                    name="deliveryDate"
+                    type="date"
+                    value={form.deliveryDate}
+                    onChange={onChange}
+                    className="mt-2 w-full rounded-lg border border-slate-200 px-3 py-2 outline-none focus:border-red-500"
+                  />
+                </div>
+
+                <div>
+                  <label className="text-sm font-semibold text-slate-700">
+                    Commodity (Optional)
+                  </label>
+                  <input
+                    name="commodity"
+                    value={form.commodity}
+                    onChange={onChange}
+                    className="mt-2 w-full rounded-lg border border-slate-200 px-3 py-2 outline-none focus:border-red-500"
+                    placeholder="e.g. Paper, Food, Electronics"
+                  />
+                </div>
+
+                <div>
+                  <label className="text-sm font-semibold text-slate-700">
+                    Weight (Optional)
+                  </label>
+                  <input
+                    name="weight"
+                    value={form.weight}
+                    onChange={onChange}
+                    className="mt-2 w-full rounded-lg border border-slate-200 px-3 py-2 outline-none focus:border-red-500"
+                    placeholder="e.g. 40,000 lbs"
+                  />
+                </div>
+
+                <div>
+                  <label className="text-sm font-semibold text-slate-700">
+                    Pallets (Optional)
+                  </label>
+                  <input
+                    name="pallets"
+                    value={form.pallets}
+                    onChange={onChange}
+                    className="mt-2 w-full rounded-lg border border-slate-200 px-3 py-2 outline-none focus:border-red-500"
+                    placeholder="e.g. 26"
+                  />
+                </div>
+
+                <div>
+                  <label className="text-sm font-semibold text-slate-700">
+                    Trailer Size (Optional)
+                  </label>
+                  <select
+                    name="trailerSize"
+                    value={form.trailerSize}
+                    onChange={onChange}
+                    className="mt-2 w-full rounded-lg border border-slate-200 px-3 py-2 outline-none focus:border-red-500 bg-white"
+                  >
+                    <option>53 ft</option>
+                    <option>48 ft</option>
+                    <option>Other</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label className="text-sm font-semibold text-slate-700">Load Type (Optional)</label>
+                  <select
+                    name="loadType"
+                    value={form.loadType}
+                    onChange={onChange}
+                    className="mt-2 w-full rounded-lg border border-slate-200 px-3 py-2 outline-none focus:border-red-500 bg-white"
+                  >
+                    <option>Live Load</option>
+                    <option>Drop & Hook</option>
+                    <option>Not Sure</option>
+                  </select>
+                </div>
+
+                {/* Temperature only for Reefer */}
+                <div className={form.serviceType === "Reefer" ? "" : "opacity-60"}>
+                  <label className="text-sm font-semibold text-slate-700">
+                    Temperature (Optional)
+                  </label>
+                  <input
+                    name="temperature"
+                    value={form.temperature}
+                    onChange={onChange}
+                    disabled={form.serviceType !== "Reefer"}
+                    className="mt-2 w-full rounded-lg border border-slate-200 px-3 py-2 outline-none focus:border-red-500 disabled:bg-slate-50"
+                    placeholder="e.g. 34°F / 1°C"
+                  />
+                </div>
+
+                <div>
+                  <label className="text-sm font-semibold text-slate-700">
+                    Reference # (Optional)
+                  </label>
+                  <input
+                    name="reference"
+                    value={form.reference}
+                    onChange={onChange}
+                    className="mt-2 w-full rounded-lg border border-slate-200 px-3 py-2 outline-none focus:border-red-500"
+                    placeholder="PO / Load ID"
+                  />
+                </div>
               </div>
 
               <div className="mt-4">
@@ -261,7 +417,7 @@ const Contact = () => {
                   onChange={onChange}
                   rows={5}
                   className="mt-2 w-full rounded-lg border border-slate-200 px-3 py-2 outline-none focus:border-red-500"
-                  placeholder="Tell us about your load (weight, commodity, pickup date, etc.)"
+                  placeholder="Pickup/delivery hours, special notes, accessorials, etc."
                   required
                 />
               </div>

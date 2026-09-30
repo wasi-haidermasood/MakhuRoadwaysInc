@@ -37,6 +37,11 @@ const Footer = () => {
   const ADDRESS = "136 Sunforest Dr Brampton ON L6Z 4B8";
   const EMAIL = "dispatch@makhuroadwaysinc.com";
 
+  // Map URLs (no API key needed)
+  const mapQuery = encodeURIComponent(ADDRESS);
+  const MAP_EMBED_URL = `https://www.google.com/maps?q=${mapQuery}&output=embed`;
+  const MAP_LINK_URL = `https://www.google.com/maps/search/?api=1&query=${mapQuery}`;
+
   const services = [
     { name: "Dry Van", href: "#services" },
     { name: "Reefer (Temperature Controlled)", href: "#services" },
@@ -48,7 +53,6 @@ const Footer = () => {
     { name: "Home", href: "#home" },
     { name: "About Us", href: "#about" },
     { name: "Our Services", href: "#services" },
-    { name: "Testimonials", href: "#testimonials" },
     { name: "Contact", href: "#contact" },
   ];
 
@@ -95,14 +99,15 @@ const Footer = () => {
         {/* Main Footer Content */}
         <div className="mx-auto max-w-7xl px-4 py-16 relative z-10">
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-10">
-            {/* Brand + Contact */}
+            {/* Brand + Contact + Map */}
             <div className="lg:col-span-1">
               <h3 className="text-2xl font-extrabold tracking-wide">
                 Makhu RoadWays <span className="text-red-500">Inc</span>
               </h3>
+
               <p className="mt-4 text-sm text-white/75 leading-relaxed">
-                Dependable truckload transportation across the USA & Canada.
-                Clear communication, safe operations, and on-time performance.
+                Dependable truckload transportation across the USA & Canada. Clear communication,
+                safe operations, and on-time performance.
               </p>
 
               <div className="mt-6 space-y-3">
@@ -141,6 +146,31 @@ const Footer = () => {
                     <s.icon className="h-5 w-5" />
                   </a>
                 ))}
+              </div>
+
+              {/* Map (NEW) */}
+              <div className="mt-6">
+                <div className="flex items-center justify-between mb-2">
+                  <div className="text-sm font-semibold">Location</div>
+                  <a
+                    href={MAP_LINK_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-xs text-white/70 hover:text-white transition-colors"
+                  >
+                    Get directions
+                  </a>
+                </div>
+
+                <div className="rounded-xl overflow-hidden border border-white/10 bg-white/5">
+                  <iframe
+                    title="Makhu RoadWays Inc location"
+                    src={MAP_EMBED_URL}
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                    className="h-44 w-full"
+                  />
+                </div>
               </div>
             </div>
 
@@ -231,15 +261,24 @@ const Footer = () => {
               </div>
 
               <div className="flex items-center gap-5">
-                <Link to="/privacy-policy" className="text-sm text-white/60 hover:text-white transition-colors">
-  Privacy Policy
-</Link>
-                <Link to="/terms-of-service" className="text-sm text-white/60 hover:text-white transition-colors">
-  Terms of Service
-</Link>
-<Link to="/sitemap" className="text-sm text-white/60 hover:text-white transition-colors">
-  Sitemap
-</Link>
+                <Link
+                  to="/privacy-policy"
+                  className="text-sm text-white/60 hover:text-white transition-colors"
+                >
+                  Privacy Policy
+                </Link>
+                <Link
+                  to="/terms-of-service"
+                  className="text-sm text-white/60 hover:text-white transition-colors"
+                >
+                  Terms of Service
+                </Link>
+                <Link
+                  to="/sitemap"
+                  className="text-sm text-white/60 hover:text-white transition-colors"
+                >
+                  Sitemap
+                </Link>
 
                 <Button
                   size="sm"

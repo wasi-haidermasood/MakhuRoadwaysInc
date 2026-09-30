@@ -11,7 +11,7 @@ import bg from "@/assets/makhuroadways.png";
  * Swap with your preferred images anytime.
  */
 const driver1 =
-  "https://images.unsplash.com/photo-1603575448365-5b8f2b7c9b7b?auto=format&fit=crop&w=300&q=80";
+  "https://images.unsplash.com/photo-1521119989659-a83eee488004";
 const driver2 =
   "https://images.unsplash.com/photo-1552058544-f2b08422138a?auto=format&fit=crop&w=300&q=80";
 const driver3 =
