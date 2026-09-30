@@ -6,8 +6,8 @@ import type { Variants } from "framer-motion";
 
 // Import images from src/assets (Vercel-safe). Adjust filenames if different:
 import dryVanImg from "@/assets/dry-van-sunset.jpeg";
-import reeferImg from "@/assets/reefer.jpg";
-import powerOnlyImg from "@/assets/power.jpg";
+import reeferImg from "@/assets/reefer.jpeg";
+import powerOnlyImg from "@/assets/power.jpeg";
 
 const premiumEase: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
