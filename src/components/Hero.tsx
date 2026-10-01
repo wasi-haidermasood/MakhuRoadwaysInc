@@ -10,7 +10,7 @@ import {
 } from "lucide-react";
 import { motion } from "framer-motion";
 import type { Variants } from "framer-motion";
-import heroBg from "@/assets/heroimage.png";
+import heroBg from "@/assets/heroimage.webp";
 
 const premiumEase: [number, number, number, number] = [0.22, 1, 0.36, 1];
 

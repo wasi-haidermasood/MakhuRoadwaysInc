@@ -220,7 +220,7 @@ const Navigation = () => {
               })}
 
               {/* Letterhead in mobile */}
-              <Link
+              {/* <Link
                 to="/letterhead"
                 onClick={() => setIsOpen(false)}
                 className={[
@@ -231,7 +231,7 @@ const Navigation = () => {
                 ].join(" ")}
               >
                 Letterhead
-              </Link>
+              </Link> */}
 
               <div className="mt-2 flex flex-col gap-3">
                 <Button
