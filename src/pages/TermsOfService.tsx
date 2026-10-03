@@ -27,8 +27,7 @@ const TermsOfService = () => {
           </h1>
           <p className="mt-3 text-slate-600">
             These Terms of Service (“Terms”) govern your use of the Makhu Road Ways
-            Inc website (“Website”). This is a general template—consider reviewing
-            with a legal professional for your specific operations.
+            Inc website (“Website”). 
           </p>
           <p className="mt-2 text-sm text-slate-500">
             Last updated: {new Date().toDateString()}

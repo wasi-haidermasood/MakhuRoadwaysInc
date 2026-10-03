@@ -11,7 +11,10 @@ const OWNER_EMAIL_DISPLAY = "dispatch@makhuroadwaysinc.com";
 
 const Contact = () => {
   const [loading, setLoading] = useState(false);
-  const [status, setStatus] = useState<{ type: "success" | "error"; msg: string } | null>(null);
+  const [status, setStatus] = useState<{
+    type: "success" | "error";
+    msg: string;
+  } | null>(null);
 
   const [form, setForm] = useState({
     name: "",
@@ -31,11 +34,11 @@ const Contact = () => {
     trailerSize: "53 ft",
     loadType: "Live Load",
 
-    temperature: "", // only for Reefer (optional)
-    reference: "", // optional
+    temperature: "",
+    reference: "",
 
     message: "",
-    company: "", // honeypot anti-spam (keep empty)
+    company: "", // honeypot
   });
 
   const onChange = (
@@ -89,7 +92,10 @@ const Contact = () => {
 
       const res = await fetch(FORMSPREE_ENDPOINT, {
         method: "POST",
-        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
         body: JSON.stringify(payload),
       });
 
@@ -150,40 +156,51 @@ const Contact = () => {
             </p>
 
             <div className="mt-8 grid gap-4">
+              {/* Phone */}
               <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
-                <div className="flex items-start gap-4">
-                  <div className="grid h-11 w-11 place-items-center rounded-xl bg-[#071a2f]/5">
+                <div className="flex items-start gap-4 min-w-0">
+                  <div className="grid h-11 w-11 place-items-center rounded-xl bg-[#071a2f]/5 shrink-0">
                     <Phone className="h-5 w-5 text-red-600" />
                   </div>
-                  <div>
+                  <div className="min-w-0">
                     <div className="font-bold text-slate-900">Call Us</div>
-                    <a href={`tel:${PHONE_TEL}`} className="text-slate-600 hover:text-slate-900">
+                    <a
+                      href={`tel:${PHONE_TEL}`}
+                      className="text-slate-600 hover:text-slate-900 break-words"
+                    >
                       {PHONE_DISPLAY}
                     </a>
                   </div>
                 </div>
               </div>
 
+              {/* Address */}
               <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
-                <div className="flex items-start gap-4">
-                  <div className="grid h-11 w-11 place-items-center rounded-xl bg-[#071a2f]/5">
+                <div className="flex items-start gap-4 min-w-0">
+                  <div className="grid h-11 w-11 place-items-center rounded-xl bg-[#071a2f]/5 shrink-0">
                     <MapPin className="h-5 w-5 text-red-600" />
                   </div>
-                  <div>
+                  <div className="min-w-0">
                     <div className="font-bold text-slate-900">Address</div>
-                    <div className="text-slate-600">{ADDRESS}</div>
+                    <div className="text-slate-600 break-words">{ADDRESS}</div>
                   </div>
                 </div>
               </div>
 
+              {/* Email */}
               <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
-                <div className="flex items-start gap-4">
-                  <div className="grid h-11 w-11 place-items-center rounded-xl bg-[#071a2f]/5">
+                <div className="flex items-start gap-4 min-w-0">
+                  <div className="grid h-11 w-11 place-items-center rounded-xl bg-[#071a2f]/5 shrink-0">
                     <Mail className="h-5 w-5 text-red-600" />
                   </div>
-                  <div>
+                  <div className="min-w-0">
                     <div className="font-bold text-slate-900">Email</div>
-                    <div className="text-slate-600">{OWNER_EMAIL_DISPLAY}</div>
+                    <a
+                      href={`mailto:${OWNER_EMAIL_DISPLAY}`}
+                      className="text-slate-600 break-all"
+                    >
+                      {OWNER_EMAIL_DISPLAY}
+                    </a>
                   </div>
                 </div>
               </div>
@@ -191,12 +208,10 @@ const Contact = () => {
           </div>
 
           {/* RIGHT: form */}
-          <div className="rounded-2xl border border-slate-200 bg-white shadow-lg overflow-hidden">
+          <div className="rounded-2xl border border-slate-200 bg-white shadow-lg overflow-hidden max-w-full">
             <div className="bg-[#071a2f] text-white px-6 py-6">
               <div className="text-lg font-extrabold">Request a Quote</div>
-              <div className="text-sm text-white/75">
-                Share the load details and we’ll reply ASAP.
-              </div>
+              <div className="text-sm text-white/75">Share the load details and we’ll reply ASAP.</div>
             </div>
 
             <form onSubmit={onSubmit} className="p-6">
@@ -273,9 +288,7 @@ const Contact = () => {
                 </div>
 
                 <div>
-                  <label className="text-sm font-semibold text-slate-700">
-                    Destination (Optional)
-                  </label>
+                  <label className="text-sm font-semibold text-slate-700">Destination (Optional)</label>
                   <input
                     name="destination"
                     value={form.destination}
@@ -286,9 +299,7 @@ const Contact = () => {
                 </div>
 
                 <div>
-                  <label className="text-sm font-semibold text-slate-700">
-                    Pickup Date (Optional)
-                  </label>
+                  <label className="text-sm font-semibold text-slate-700">Pickup Date (Optional)</label>
                   <input
                     name="pickupDate"
                     type="date"
@@ -312,9 +323,7 @@ const Contact = () => {
                 </div>
 
                 <div>
-                  <label className="text-sm font-semibold text-slate-700">
-                    Commodity (Optional)
-                  </label>
+                  <label className="text-sm font-semibold text-slate-700">Commodity (Optional)</label>
                   <input
                     name="commodity"
                     value={form.commodity}
@@ -325,9 +334,7 @@ const Contact = () => {
                 </div>
 
                 <div>
-                  <label className="text-sm font-semibold text-slate-700">
-                    Weight (Optional)
-                  </label>
+                  <label className="text-sm font-semibold text-slate-700">Weight (Optional)</label>
                   <input
                     name="weight"
                     value={form.weight}
@@ -338,9 +345,7 @@ const Contact = () => {
                 </div>
 
                 <div>
-                  <label className="text-sm font-semibold text-slate-700">
-                    Pallets (Optional)
-                  </label>
+                  <label className="text-sm font-semibold text-slate-700">Pallets (Optional)</label>
                   <input
                     name="pallets"
                     value={form.pallets}

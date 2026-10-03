@@ -23,8 +23,7 @@ const PrivacyPolicy = () => {
             Privacy Policy
           </h1>
           <p className="mt-3 text-slate-600">
-            Makhu Road Ways Inc (“we”, “our”, “us”) respects your privacy. This is a template
-            you can customize with your lawyer/compliance needs.
+            Makhu Road Ways Inc we respects your privacy.
           </p>
           <p className="mt-2 text-sm text-slate-500">Last updated: {new Date().toDateString()}</p>
         </header>
